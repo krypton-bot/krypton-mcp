@@ -2,8 +2,8 @@
 
 # Krypton Bot MCP server
 
-Trade perps and prediction markets from Claude, Cursor or any MCP client.
-The [Krypton Bot](https://krypton.bot) MCP server gives your AI the same tools Krypton Bot uses:
+Trade on Polymarket from Claude, Cursor or any MCP client: perps, prediction markets and copy trading.
+The [Krypton Bot](https://krypton.bot) MCP server lets your AI trade on Polymarket with the same tools Krypton Bot uses:
 live markets, perps and prediction-market orders, and copy-trading bots.
 Every call runs inside your own risk limits and kill switch.
 
@@ -43,15 +43,41 @@ New accounts trade in paper mode ($10,000 in paper USD) until you go live with y
 
 ## Tools
 
+25 tools. Full reference with every parameter, type, limit and an example prompt: **[docs/TOOLS.md](docs/TOOLS.md)** (also at [krypton.bot/mcp](https://krypton.bot/mcp#tools-heading)).
+
 | Group | Tools |
 | --- | --- |
 | Perps | `getInstruments`, `getTicker`, `getBook`, `getCandles`, `placeOrder`, `closePosition`, `cancelOrder`, `cancelAll`, `setLeverage` |
-| Prediction markets | `searchMarkets`, `getPredictionMarket`, `getPredictionPortfolio`, `buyOutcome`, `sellOutcome` |
+| Prediction markets | `searchMarkets`, `getPredictionMarket`, `buyOutcome`, `sellOutcome`, `getPredictionPortfolio` |
 | Copy trading | `topTraders`, `getTraderTrades`, `followTrader`, `unfollowTrader`, `listCopyBots` |
 | Account | `getPortfolio`, `getFills`, `getLimits` |
-| Research | `webSearch`, `fetchPage` |
+| Research | `webSearch`, `fetchPage`, `comment` |
 
-Call `tools/list` for the live schemas.
+Call `tools/list` for the live JSON schemas.
+
+### Example workflows
+
+**Prediction market trade**
+
+> Find the most traded crypto market this week, check the latest news, and buy $10 of the side you favour if the odds look wrong.
+
+The AI calls `searchMarkets` → `webSearch` / `fetchPage` → `getPredictionMarket` (odds and book) → `buyOutcome`.
+
+**Perps trade with a stop in mind**
+
+> Check BTC funding and the 1h trend, then go long $50 at 3x if momentum is up. Close it if it drops 2%.
+
+`getTicker` → `getCandles` → `getLimits` → `placeOrder`, later `closePosition`.
+
+**Copy a top trader**
+
+> Show me the top 5 Polymarket traders this month and copy the best one at 10% of their size, max $25 per trade.
+
+`topTraders` → `getTraderTrades` → `followTrader`. Stop any time with `unfollowTrader`.
+
+### Errors
+
+Tools return an error message instead of failing silently, so your AI can explain it: limit exceeded (size, leverage, daily loss), kill switch on, live trading not connected, region blocked, unknown instrument or token, or rate limit reached.
 
 ## Plans
 
