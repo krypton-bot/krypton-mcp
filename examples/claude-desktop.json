@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "krypton": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://krypton.bot/api/mcp", "--header", "Authorization:${KRYPTON_TOKEN}"],
+      "env": { "KRYPTON_TOKEN": "Bearer kr_..." }
+    }
+  }
+}

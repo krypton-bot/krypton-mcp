@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "krypton": {
+      "url": "https://krypton.bot/api/mcp",
+      "headers": { "Authorization": "Bearer kr_..." }
+    }
+  }
+}
