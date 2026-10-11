@@ -1,9 +1,9 @@
 <p align="center"><img src="assets/krypton-bot.svg" width="72" alt="Krypton Bot"></p>
 
-# Krypton MCP server
+# Krypton Bot MCP server
 
 Trade perps and prediction markets from Claude, Cursor or any MCP client.
-The [Krypton](https://krypton.bot) MCP server gives your AI the same tools Krypton Bot uses:
+The [Krypton Bot](https://krypton.bot) MCP server gives your AI the same tools Krypton Bot uses:
 live markets, perps and prediction-market orders, and copy-trading bots.
 Every call runs inside your own risk limits and kill switch.
 
@@ -11,7 +11,7 @@ Every call runs inside your own risk limits and kill switch.
 - **Auth:** `Authorization: Bearer kr_...` (your personal token)
 - **Docs:** https://krypton.bot/mcp
 
-This repository holds client setup and docs. The server is hosted by Krypton, so there is nothing to install or run.
+This repository holds client setup and docs. The server is hosted by Krypton Bot, so there is nothing to install or run.
 
 ## 1. Get your token
 
@@ -67,7 +67,7 @@ Call `tools/list` for the live schemas.
 - Each token is scoped to one account and can only see and act on that account.
 - Rotating or switching off MCP revokes every existing token immediately.
 - Orders go through the same risk limits as the app. The server can never withdraw funds.
-- Live trades sign with your own wallet. Krypton never holds your money.
+- Live trades sign with your own wallet. Krypton Bot never holds your money.
 
 Found a security issue? Email hello@krypton.bot rather than opening a public issue.
 
